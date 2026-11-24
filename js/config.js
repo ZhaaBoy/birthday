@@ -78,7 +78,7 @@ window.SITE = {
     subtitle: "every moment captured in love",
     // Jumlah bebas, grid menyesuaikan sendiri. Referensi memakai 11 foto.
     photos: [
-      "assets/photos/01.JPG", "assets/photos/02.PNG", "assets/photos/03.PNG", "assets/photos/04.jpeg",
+      "assets/photos/01.jpeg", "assets/photos/02.PNG", "assets/photos/03.PNG", "assets/photos/04.jpeg",
       "assets/photos/05.jpeg", "assets/photos/06.jpeg", "assets/photos/07.jpeg", "assets/photos/08.jpg",
       "assets/photos/09.jpeg", "assets/photos/10.jpeg", "assets/photos/11.jpg"
     ],
