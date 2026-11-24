@@ -15,7 +15,7 @@
    ========================================================= */
 window.SITE = {
   targetDate: "2026-11-28T00:00:00+07:00", // ganti: tanggal ulang tahun, zona WIB
-  demoMode: false,                          // true: countdown 10 detik untuk uji alur
+  demoMode: true,                          // true: countdown 10 detik untuk uji alur
   // true : kunci memakai jam internet, jadi tidak bisa dibuka lebih awal dengan
   //        memajukan jam HP. Butuh koneksi internet saat halaman dibuka.
   // false: kunci memakai jam perangkat. Bisa dibuka tanpa internet, tapi bisa diakali.
