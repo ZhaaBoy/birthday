@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1A0304">
+  <meta name="robots" content="noindex, nofollow">
+  <title>&#10022;</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font dimuat tanpa memblokir halaman: kalau Google Fonts lambat, situs tetap tampil dengan font cadangan -->
+  <link id="font-css" rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Josefin+Sans:wght@700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!--
+    Semua teks diisi oleh js/app.js dari js/config.js:
+      data-text="a.b"   isi teks dari SITE.a.b
+      data-btn="a.b"    label tombol dari SITE.a.b
+      data-glyph        hiasan yang ditambahkan kode: wrap | arrow | play | star | replay
+      data-goto         scene tujuan saat diklik
+      data-reveal       urutan masuk di dalam scene: 0 judul, 1 isi, 2 tombol
+  -->
+
+  <!-- Latar tiap scene -->
+  <div class="backdrops" aria-hidden="true">
+    <div class="backdrop backdrop--countdown" data-backdrop="countdown">
+      <span class="bokeh bokeh--1"></span>
+      <span class="bokeh bokeh--2"></span>
+      <span class="bokeh bokeh--3"></span>
+      <span class="bokeh bokeh--4"></span>
+      <span class="bokeh bokeh--5"></span>
+      <span class="bokeh bokeh--6"></span>
+    </div>
+    <div class="backdrop backdrop--gift" data-backdrop="gift"></div>
+    <div class="backdrop backdrop--hero" data-backdrop="hero"></div>
+    <div class="backdrop backdrop--letter" data-backdrop="letter"></div>
+    <div class="backdrop backdrop--memories" data-backdrop="memories"></div>
+    <div class="backdrop backdrop--video" data-backdrop="video"></div>
+    <div class="backdrop backdrop--wishes" data-backdrop="wishes"></div>
+    <div class="backdrop backdrop--finale" data-backdrop="finale"></div>
+  </div>
+
+  <!-- Partikel di belakang konten: kelopak (Scene 1) dan bokeh hati (Scene 3) -->
+  <canvas class="fx fx--back" id="fx-back" aria-hidden="true"></canvas>
+
+  <main class="stage" id="stage">
+
+    <!-- ===== Scene 1: Countdown ===== -->
+    <section class="scene scene--countdown" data-scene="countdown" aria-hidden="true">
+      <div class="scene__inner">
+        <p class="eyebrow" data-reveal="0" data-text="countdown.eyebrow" data-glyph="wrap"></p>
+        <h1 class="title title--stack" data-reveal="0">
+          <span class="title__main" data-text="countdown.title.0"></span>
+          <span class="title__sub" data-text="countdown.title.1"></span>
+        </h1>
+        <p class="subtitle" data-reveal="1" data-text="countdown.subtitle"></p>
+
+        <div class="clock" id="clock" data-reveal="1" role="timer">
+          <div class="clock__unit">
+            <div class="clock__box" data-unit="days"></div>
+            <span class="clock__label" data-text="countdown.labels.0"></span>
+          </div>
+          <span class="clock__colon" aria-hidden="true">:</span>
+          <div class="clock__unit">
+            <div class="clock__box" data-unit="hours"></div>
+            <span class="clock__label" data-text="countdown.labels.1"></span>
+          </div>
+          <span class="clock__colon" aria-hidden="true">:</span>
+          <div class="clock__unit">
+            <div class="clock__box" data-unit="minutes"></div>
+            <span class="clock__label" data-text="countdown.labels.2"></span>
+          </div>
+          <span class="clock__colon" aria-hidden="true">:</span>
+          <div class="clock__unit">
+            <div class="clock__box" data-unit="seconds"></div>
+            <span class="clock__label" data-text="countdown.labels.3"></span>
+          </div>
+        </div>
+
+        <p class="status" data-reveal="1"><span id="cd-status"></span></p>
+        <div class="cd-action" data-reveal="2">
+          <button class="btn btn--locked" id="cd-button" type="button" disabled></button>
+        </div>
+        <p class="tiny" data-reveal="2" id="cd-remaining"></p>
+      </div>
+    </section>
+
+    <!-- ===== Scene 2: Kado ===== -->
+    <section class="scene scene--gift" data-scene="gift" aria-hidden="true">
+      <div class="scene__inner">
+        <p class="eyebrow" data-reveal="0" data-text="gift.eyebrow" data-glyph="wrap"></p>
+
+        <div class="gift-wrap reveal--plain" data-reveal="1">
+          <button class="gift" id="gift" type="button">
+            <span class="gift__glow"></span>
+            <span class="gift__float">
+              <span class="gift__tilt">
+                <span class="gift__lid">
+                  <svg viewBox="0 0 220 104" aria-hidden="true">
+                    <path class="g-bow" d="M110 50 C92 14 48 2 40 26 C34 46 78 54 110 50 Z"/>
+                    <path class="g-bow" d="M110 50 C128 14 172 2 180 26 C186 46 142 54 110 50 Z"/>
+                    <rect class="g-base" x="1.5" y="58" width="217" height="44" rx="6"/>
+                    <rect class="g-shade" x="1.5" y="58" width="217" height="44" rx="6"/>
+                    <rect class="g-ribbon" x="94" y="58" width="32" height="44"/>
+                    <rect class="g-ribbon-light" x="107" y="58" width="6" height="44"/>
+                    <rect class="g-edge" x="1.5" y="58" width="217" height="44" rx="6"/>
+                    <rect class="g-knot" x="98" y="38" width="24" height="22" rx="7"/>
+                  </svg>
+                </span>
+                <span class="gift__body">
+                  <svg viewBox="0 0 200 150" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="gift-shade" x1="0" y1="0" x2="1" y2="1">
+                        <stop class="g-stop-a" offset="0"/>
+                        <stop class="g-stop-b" offset="1"/>
+                      </linearGradient>
+                    </defs>
+                    <rect class="g-base" x="1.5" y="0" width="197" height="148.5" rx="5"/>
+                    <rect class="g-shade" x="1.5" y="0" width="197" height="148.5" rx="5"/>
+                    <rect class="g-ribbon" x="84" y="0" width="32" height="149"/>
+                    <rect class="g-ribbon-light" x="97" y="0" width="6" height="149"/>
+                    <rect class="g-ribbon" x="1.5" y="60" width="197" height="24"/>
+                    <rect class="g-edge" x="1.5" y="0" width="197" height="148.5" rx="5"/>
+                  </svg>
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+
+        <p class="hint" data-reveal="2"><span class="hint__text" data-text="gift.hint"></span></p>
+      </div>
+    </section>
+
+    <!-- ===== Scene 3: Hero ===== -->
+    <section class="scene scene--hero" data-scene="hero" aria-hidden="true">
+      <div class="hero-polaroids" id="hero-polaroids" aria-hidden="true"></div>
+      <div class="scene__inner">
+        <p class="eyebrow" data-reveal style="--d: 1250ms" data-text="hero.eyebrow" data-glyph="wrap"></p>
+        <h1 class="hero-title" data-reveal style="--d: 1400ms">
+          <span data-text="hero.title.0"></span>
+          <span data-text="hero.title.1"></span>
+        </h1>
+        <p class="subtitle subtitle--rose" data-reveal style="--d: 1750ms" data-text="hero.subtitle"></p>
+        <span class="divider reveal--plain" data-reveal style="--d: 1900ms"></span>
+        <div class="hero-action" data-reveal style="--d: 2100ms">
+          <button class="btn" type="button" data-btn="hero.button" data-glyph="wrap" data-goto="letter"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 4: Surat ===== -->
+    <section class="scene scene--letter" data-scene="letter" aria-hidden="true">
+      <div class="scene__inner">
+        <h2 class="title" data-reveal="0" data-text="letter.title"></h2>
+        <div class="letter-wrap reveal--plain" data-reveal="1">
+          <div class="glass letter-card" id="letter-card">
+            <div class="letter-scroll" id="letter-scroll">
+              <p class="letter-text" aria-hidden="true"><span class="letter-greeting" id="letter-greeting"></span><span id="letter-body"></span><span class="tw-cursor">|</span></p>
+            </div>
+          </div>
+          <p class="sr-only" id="letter-full"></p>
+        </div>
+        <div class="letter-next" id="letter-next">
+          <button class="btn" type="button" data-btn="letter.button" data-glyph="arrow" data-goto="memories"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 5: Galeri (satu-satunya scene yang bisa di-scroll) ===== -->
+    <section class="scene scene--memories" data-scene="memories" aria-hidden="true">
+      <div class="memories__inner">
+        <h2 class="title" data-reveal="0" data-text="memories.title"></h2>
+        <p class="subtitle subtitle--mark" data-reveal="0" data-text="memories.subtitle" data-glyph="wrap"></p>
+        <div class="gallery reveal--plain" id="gallery" data-reveal="1"></div>
+        <div class="memories__next" data-reveal="2">
+          <button class="btn" type="button" data-btn="memories.button" data-glyph="play" data-goto="video"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 6: Video ===== -->
+    <section class="scene scene--video" data-scene="video" aria-hidden="true">
+      <div class="scene__inner">
+        <h2 class="title" data-reveal="0" data-text="video.title"></h2>
+        <p class="subtitle subtitle--mark" data-reveal="0" data-text="video.subtitle" data-glyph="wrap"></p>
+
+        <div class="player-wrap reveal--plain" data-reveal="1">
+          <div class="player" id="player">
+            <div class="player__frame">
+              <video id="video" playsinline preload="metadata"></video>
+              <img class="player__poster" alt="">
+              <button class="player__big" type="button">
+                <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <span class="icon icon--replay" aria-hidden="true"></span>
+              </button>
+              <button class="player__fs" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+              </button>
+            </div>
+            <div class="player__bar">
+              <button class="player__toggle" type="button">
+                <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>
+              </button>
+              <span class="player__time"></span>
+              <div class="player__progress" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span class="player__track"><span class="player__fill"></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-next" data-reveal="2">
+          <button class="btn" type="button" data-btn="video.button" data-glyph="arrow" data-goto="wishes"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 7: Ucapan ===== -->
+    <section class="scene scene--wishes" data-scene="wishes" aria-hidden="true">
+      <div class="scene__inner">
+        <div class="glass wishes-card reveal--plain" data-reveal="0">
+          <h2 class="title" data-text="wishes.title"></h2>
+          <div class="wishes-content" data-reveal="1">
+            <p class="wishes-greeting" data-text="wishes.greeting"></p>
+            <p class="wishes-body" data-text="wishes.body"></p>
+            <div class="heartbeat" aria-hidden="true">&#10084;&#65039;</div>
+          </div>
+          <div class="wishes-action" data-reveal="2">
+            <button class="btn" type="button" data-btn="wishes.button" data-glyph="star" data-goto="finale"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 8: Penutup ===== -->
+    <section class="scene scene--finale" data-scene="finale" aria-hidden="true">
+      <div class="scene__inner">
+        <h2 class="finale-title" id="finale-title" data-reveal="0"><span id="finale-text" aria-hidden="true"></span><span class="rot-cursor" aria-hidden="true"></span></h2>
+        <div class="finale-lines" id="finale-lines" data-reveal="1"></div>
+        <p class="signature" data-reveal="2" data-text="finale.signature"></p>
+        <div class="finale-action" data-reveal="3">
+          <button class="btn" type="button" data-btn="finale.button" data-glyph="replay" data-goto="hero"></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Peredup untuk jeda "langit berbintang" setelah kado dibuka -->
+  <div class="veil" id="veil" aria-hidden="true"></div>
+
+  <!-- Bintang dan semburan kado: di atas semua konten, tidak menangkap klik -->
+  <canvas class="fx fx--front" id="fx-front" aria-hidden="true"></canvas>
+
+  <!-- Widget musik -->
+  <button class="music" id="music" type="button" aria-pressed="false">
+    <span class="music__dot">
+      <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+      <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>
+    </span>
+    <span class="music__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="music__label"></span>
+  </button>
+
+  <audio id="bgm" loop preload="auto"></audio>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
